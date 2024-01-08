@@ -48,14 +48,19 @@ app.post("/update", (req, res) => {
   axios
     .post(
       `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
-      JSON.stringify(payload)
+      JSON.stringify(payload),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     )
     .then(function (response) {
       console.log(response);
-      res.send("success");
+      res.send("updated!");
     })
     .catch(function (err) {
-      res.send("fail");
+      res.send("error");
     });
   // fetch(
   //   `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
