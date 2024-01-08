@@ -45,17 +45,31 @@ app.post("/update", (req, res) => {
   const mesurementID = "G-TSLJKQSFB3";
   const apiSecretKey = "rRCZXTRsTQKFx-fvygSD3w";
 
-  axios
-    .post(
-      `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
-      JSON.stringify(payload)
-    )
+  // axios
+  //   .post(
+  //     `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
+  //     JSON.stringify(payload)
+  //   )
+  //   .then(function (response) {
+  //     console.log(response);
+  //     res.send("success");
+  //   })
+  //   .catch(function (err) {
+  //     res.send("fail");
+  //   });
+  fetch(
+    `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }
+  )
     .then(function (response) {
-      console.log(response.statusCode);
-      res.send("updated!");
+      console.log(response);
+      res.send("success");
     })
     .catch(function (err) {
-      res.send("error");
+      res.send("fail");
     });
 });
 
