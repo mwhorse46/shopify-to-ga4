@@ -45,25 +45,11 @@ app.post("/update", (req, res) => {
   const mesurementID = "G-TSLJKQSFB3";
   const apiSecretKey = "rRCZXTRsTQKFx-fvygSD3w";
 
-  // axios
-  //   .post(
-  //     `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
-  //     JSON.stringify(payload)
-  //   )
-  //   .then(function (response) {
-  //     console.log(response);
-  //     res.send("success");
-  //   })
-  //   .catch(function (err) {
-  //     res.send("fail");
-  //   });
-  fetch(
-    `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
-    {
-      method: "POST",
-      body: JSON.stringify(payload),
-    }
-  )
+  axios
+    .post(
+      `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
+      JSON.stringify(payload)
+    )
     .then(function (response) {
       console.log(response);
       res.send("success");
@@ -71,6 +57,20 @@ app.post("/update", (req, res) => {
     .catch(function (err) {
       res.send("fail");
     });
+  // fetch(
+  //   `https://www.google-analytics.com/mp/collect?measurement_id=${mesurementID}&api_secret=${apiSecretKey}`,
+  //   {
+  //     method: "POST",
+  //     body: JSON.stringify(payload),
+  //   }
+  // )
+  //   .then(function (response) {
+  //     console.log(response);
+  //     res.send("success");
+  //   })
+  //   .catch(function (err) {
+  //     res.send("fail");
+  //   });
 });
 
 app.listen(port, () => {
